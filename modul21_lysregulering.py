@@ -1,0 +1,108 @@
+from gpiozero import LED
+from time import sleep
+y=0
+rød=LED(22)
+rød1=LED(6)
+gul=LED(27)
+gul1=LED(5)
+grøn=LED(17)
+grøn1=LED(0)
+
+
+def gron_rod():
+    print('state1')
+    grøn.on()
+    grøn1.off()
+    gul.off()
+    gul1.off()
+    rød.off()
+    rød1.on()
+    sleep(2)
+    return gul_rod()
+def gul_rod():
+    print('state2')
+    grøn.off()
+    grøn1.off()
+    gul.on()
+    gul1.off()
+    rød.off()
+    rød1.on()
+    sleep(2)
+    return rod_rod()
+def rod_rod():
+    print('state3')
+    grøn.off()
+    grøn1.off()
+    gul.off()
+    gul1.off()
+    rød.on()
+    rød1.on()
+    sleep(1)
+    return rod_rodgul()
+def rod_rodgul():
+    print('state4')
+    grøn.off()
+    grøn1.off()
+    gul.off()
+    gul1.on()
+    rød.on()
+    rød1.on()
+    sleep(2)
+    return rod_gron()
+def rod_gron():
+    print('state5')
+    grøn.off()
+    grøn1.on()
+    gul.off()
+    gul1.off()
+    rød.on()
+    rød1.off()
+    sleep(2)
+    return rod_gul()
+def rod_gul():
+    print('state6')
+    grøn.off()
+    grøn1.off()
+    gul.off()
+    gul1.on()
+    rød.on()
+    rød1.off()
+    sleep(2)
+    return rod_rod1()
+def rod_rod1():
+    print('state7')
+    grøn.off()
+    grøn1.off()
+    gul.off()
+    gul1.off()
+    rød.on()
+    rød1.on()
+    sleep(1)
+    return rodgul_rod()
+def rodgul_rod():
+    global y
+    print('state8')
+    y +=1
+    grøn.off()
+    grøn1.off()
+    gul.on()
+    gul1.off()
+    rød.on()
+    rød1.on()
+    sleep(2)
+    if y>=2:
+        return stop()
+    else:
+        return gron_rod()
+def stop():
+    grøn.off()
+    grøn1.off()
+    gul.off()
+    gul1.off()
+    rød.off()
+    rød1.off()
+    sleep(1)
+
+state=gron_rod()
+while state: state=state
+print('du er stoppet')
